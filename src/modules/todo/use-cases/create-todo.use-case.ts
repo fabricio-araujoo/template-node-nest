@@ -10,8 +10,8 @@ import {
 export class CreateTodoUseCase {
   constructor(private todoService: TodoService) {}
 
-  async execute(dto: ICreateTodoUseCaseInput): ICreateTodoUseCaseOutput {
-    const todo = new TodoEntity(dto.title, false);
+  async execute(input: ICreateTodoUseCaseInput): ICreateTodoUseCaseOutput {
+    const todo = new TodoEntity(undefined, input.title, false);
 
     const newTodo = await this.todoService.createTodo(todo);
 
