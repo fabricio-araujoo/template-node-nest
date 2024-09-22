@@ -1,11 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { TodoEntity } from 'src/domain/entities/todo/todo.entity';
+import { ECollections } from 'src/enums/collections.enum';
+import { TodoEntity } from '../entities/todo.entity';
 
 export type TodoDocument = Todo & Document;
 
 @Schema({
-  collection: 'tarefas',
+  collection: ECollections.tarefas,
   versionKey: false,
 })
 export class Todo extends TodoEntity {

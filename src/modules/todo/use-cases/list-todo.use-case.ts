@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { TodoService } from 'src/app/services/todo/todo.service';
-import { TodoEntity } from 'src/domain/entities/todo/todo.entity';
+import { TodoService } from '../services/todo.service';
+import { IListTodoUseCaseOutput } from './interfaces/list-todo.interface';
 
 @Injectable()
 export class ListTodoUseCase {
   constructor(private todoService: TodoService) {}
 
-  async execute(): Promise<TodoEntity[]> {
+  async execute(): IListTodoUseCaseOutput {
     const todos = await this.todoService.listTodo();
 
     return todos || [];

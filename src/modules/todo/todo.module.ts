@@ -1,17 +1,25 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Todo, TodoSchema } from './todo.schema';
-import { TodoController } from './todo.controller';
-import { TodoService } from 'src/app/services/todo/todo.service';
-import { ListTodoUseCase } from 'src/app/use-cases/todo/list-todo.use-case';
-import { CreateTodoUseCase } from 'src/app/use-cases/todo/create-todo.use-case';
+import { Todo, TodoSchema } from './schemas/todo.schema';
+import { TodoController } from './controllers/todo.controller';
+import { TodoReposity } from './repositories/todo.repository';
+import { TodoService } from './services/todo.service';
+import { ListTodoUseCase } from './use-cases/list-todo.use-case';
+import { CreateTodoUseCase } from './use-cases/create-todo.use-case';
+import { DeleteTodoUseCase } from './use-cases/delete-todo.use-case';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Todo.name, schema: TodoSchema }]),
   ],
   controllers: [TodoController],
-  providers: [TodoService, ListTodoUseCase, CreateTodoUseCase],
+  providers: [
+    TodoReposity,
+    TodoService,
+    ListTodoUseCase,
+    CreateTodoUseCase,
+    DeleteTodoUseCase,
+  ],
   exports: [TodoService],
 })
 export class TodoModule {}
